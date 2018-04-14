@@ -7,8 +7,16 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  posts = [];
+  imageUrl: string = 'assets/imgs/profile/profile-cover.jpg';
 
+  constructor(public navCtrl: NavController) {
+    for (let i = 0; i < 4; i++) {
+      this.posts[i] = {
+        text: 'Pago recibido ' + i,
+        created_at: (i + 1),
+      };
+    }
   }
 
 }
