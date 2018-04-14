@@ -1,36 +1,22 @@
 import { Component } from '@angular/core';
-import { Platform, MenuController } from 'ionic-angular';
-import { StatusBar, Splashscreen } from 'ionic-native';
+import { Platform } from 'ionic-angular';
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
-import { IconsPage } from '../pages/icons/icons';
-
+import { TabsPage } from '../pages/tabs/tabs';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage = HomePage;
+  rootPage:any = TabsPage;
 
-  pages: Array<{title: string, component: any, badge: string}> = [];
-
-  constructor(platform: Platform, public menuCtrl: MenuController) {
-
-    this.pages = [
-      {title: 'Inicio', component: HomePage, badge: 'Nuevo'},
-      {title: 'Icons', component: IconsPage, badge: ''},
-    ];
-
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      StatusBar.styleDefault();
-      Splashscreen.hide();
+      statusBar.styleDefault();
+      splashScreen.hide();
     });
-  }
-
-  openPage(page: {title: string, component: any}): void {
-    this.rootPage = page.component;
-    this.menuCtrl.close();
   }
 }
