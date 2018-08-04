@@ -7,6 +7,7 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'contacto.html'
 })
 export class contactopage {
+  imageUrl: string = 'assets/imgs/profile/profile-cover.jpg';
 
 
 }

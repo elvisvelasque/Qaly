@@ -10,8 +10,6 @@ import { contactopage } from './contacto/contacto';
 export class contactospage {
 
   posts = [];
-  imageUrl: string = 'assets/imgs/profile/profile-cover.jpg';
-
   constructor(public navCtrl: NavController) {
     for (let i = 0; i < 4; i++) {
       this.posts[i] = {
