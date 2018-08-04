@@ -4,7 +4,8 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { perfilpage } from '../pages/perfil/perfil';
-import { monederopage } from '../pages/monedero/monedero';
+import { contactopage } from '../pages/contactos/contacto/contacto';
+import { contactospage } from '../pages/contactos/contactos';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
@@ -15,7 +16,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   declarations: [
     MyApp,
     perfilpage,
-    monederopage,
+    contactospage,
+    contactopage,
     HomePage,
     TabsPage
   ],
@@ -27,7 +29,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   entryComponents: [
     MyApp,
     perfilpage,
-    monederopage,
+    contactospage,
+    contactopage,
     HomePage,
     TabsPage
   ],

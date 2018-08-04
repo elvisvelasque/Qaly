@@ -1,20 +1,15 @@
 <ion-content>
-  <div id="profile-bg" [ngStyle]="{'background-image': 'url(' + imageUrl +')'}"></div>
-  <div id="content">
-    <div id="profile-info">
-      <img id="profile-image" src="assets/imgs/profile/profile-2.jpg">
-      <h3 id="profile-name">Elvis</h3>
-      <span id="profile-description">elvisvelasque96@gmail.com</span>
-      <p>SALDO : S/ 850</p>
-    </div>
-    <ion-list>
-      <ion-item *ngFor="let post of posts">
-        <img class="post-profile-image" src="assets/imgs/profile/profile-1.jpg"> {{post.text}}
-        <div class="post-time">Hace: {{post.created_at}} Sem.</div>
-        <div class="post-options">
-          <ion-icon name="undo"></ion-icon>
-        </div>
-      </ion-item>
-    </ion-list>
-  </div>
+  
+</ion-content>
+
+<ion-content>
+<ion-fab right bottom>
+    <button ion-fab color="vibrant" mini><ion-icon name="md-share"></ion-icon></button>
+    <ion-fab-list side="left">
+      <button ion-fab><ion-icon name="contact"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+
+
+  
 </ion-content>
