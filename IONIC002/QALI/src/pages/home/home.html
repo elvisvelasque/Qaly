@@ -1,20 +1,63 @@
+<ion-header>
+  <ion-navbar color="danger">
+    <ion-title>
+      TU ACTIVIDAD
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
 <ion-content>
-  <div id="profile-bg" [ngStyle]="{'background-image': 'url(' + imageUrl +')'}"></div>
-  <div id="content">
-    <div id="profile-info">
-      <img id="profile-image" src="assets/imgs/profile/profile-2.jpg">
-      <h3 id="profile-name">Elvis</h3>
-      <span id="profile-description">elvisvelasque96@gmail.com</span>
-      <p>SALDO : S/ 850</p>
-    </div>
-    <ion-list>
-      <ion-item *ngFor="let post of posts">
-        <img class="post-profile-image" src="assets/imgs/profile/profile-1.jpg"> {{post.text}}
-        <div class="post-time">Hace: {{post.created_at}} Sem.</div>
-        <div class="post-options">
-          <ion-icon name="undo"></ion-icon>
-        </div>
-      </ion-item>
-    </ion-list>
-  </div>
+  <ion-card>
+    <ion-card-header>
+      CANTIDAD DE PASOS
+    </ion-card-header>
+
+     <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Últimos 7 días</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-card-content>
+      <canvas #stepCanvas></canvas>
+    </ion-card-content>
+  </ion-card>
+
+    <ion-card>
+    <ion-card-header>
+      HORAS DE SUEÑO
+    </ion-card-header>
+
+     <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Últimos 7 días</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-card-content>
+      <canvas #stepCanvas></canvas>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      RITMO CARDIACO
+    </ion-card-header>
+
+     <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Última hra</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-card-content>
+      <canvas #stepCanvas></canvas>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
