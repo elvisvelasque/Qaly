@@ -14,13 +14,12 @@ export class thaniProvider {
 
   public name = "";
   private rEndpoint = 'https://thaniservices.azurewebsites.net/';
- // public token: string = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJydWMiOiIxMDA5NDkwNjQ2MSIsImlhdCI6MTUxNDMwNDYyM30.N8SoYsqdrVgGg68j08d8NnRPHLhTN6aGxl6NKSs81X0";
 
   constructor(public http: Http) {
   }
 
   private getUrl(command: string) {
-    return this.sunatEndpoint + command;
+    return this.rEndpoint + command;
   }
 
   private extractData(res: Response) {
