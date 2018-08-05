@@ -43,6 +43,9 @@ export class HomePage {
    }
 
   changePrincipal(){
+    this.searchCell = "";
+    this.searchId = 0;
+    this.searchName = "";
     this.getDetails();
     this.type = "principal"
    }
@@ -258,5 +261,35 @@ export class HomePage {
     });
 
     loading.present();
+  }
+
+  addContact() {
+    this.thani.AddContact(this.thani.id, this.searchId, true, true, true)
+      .subscribe(
+        data => {
+          if (data) {
+            if (data["result"]) {
+              this.showAlert("Se añadió el contacto :)");
+              this.changePrincipal();
+            }
+          }
+          else {
+            this.showAlert('Ocurrió un error. Inténtalo de nuevo :)');
+          }
+        },
+      error => {
+        this.showAlert('Ocurrió un error. Inténtalo de nuevo :)');
+        console.dir(error);
+      }
+    ); 
+  }
+
+  showAlert(message: string) {
+    const alert = this.alertCtrl.create({
+        title: 'Success',
+        subTitle: message,
+        buttons: ['Dismiss']
+      });
+    alert.present();  
   }
 }

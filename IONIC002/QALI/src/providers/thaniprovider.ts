@@ -57,6 +57,7 @@ export class thaniProvider {
     );
   }
 
+
   public getAll(id: number): Observable<{}>{
     let url: string = this.getUrl("/api/Contactos/GetContactosIn/" + id);
    return this.http.get(url).pipe(
@@ -68,6 +69,17 @@ export class thaniProvider {
   public getAllOut(id: number): Observable<{}>{
     let url: string = this.getUrl("/api/Contactos/GetContactosOut/" + id);
    return this.http.get(url).pipe(
+
+  public AddContact(usuario: number, contacto: number, pasos: boolean, ritmo: boolean, sueno:boolean): Observable<{}> {
+    let content = { idUsuario: "", idContacto: "", compartePasos: "", comparteRitmoCardiaco: "", comparteHorasSueno: ""};
+    content.idUsuario = usuario.toString();
+    content.idContacto = contacto.toString();
+    content.compartePasos = pasos.toString();
+    content.comparteRitmoCardiaco = ritmo.toString();
+    content.comparteHorasSueno = sueno.toString();
+    
+    let url: string = this.getUrl("/api/Contactos/AddContacto");
+    return this.http.post(url, content).pipe(
       map(this.extractData),
       catchError(this.handleError)
     );
