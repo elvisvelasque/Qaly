@@ -8,6 +8,9 @@ import { contactopage } from '../pages/contactos/contacto/contacto';
 import { contactospage } from '../pages/contactos/contactos';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { ScannerPage } from '../pages/scanner/scanner';
+import { DetailPage } from '../pages/scanner/detail/detail';
+import { BLE } from '@ionic-native/ble';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -19,7 +22,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     contactospage,
     contactopage,
     HomePage,
-    TabsPage
+    TabsPage,
+    ScannerPage,
+      DetailPage,
   ],
   imports: [
     BrowserModule,
@@ -32,12 +37,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     contactospage,
     contactopage,
     HomePage,
-    TabsPage
+    TabsPage,
+    ScannerPage,
+      DetailPage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    BLE
   ]
 })
 export class AppModule {}
