@@ -16,9 +16,6 @@
        <div *ngSwitchCase = "'principal'">
          	<ion-fab right top bottom>
     			<button ion-fab (click)="changeUser()" color="vibrant" mini><ion-icon name="md-share"></ion-icon></button>
-    			<!--<ion-fab-list side="left">
-      			<button ion-fab (click)="changeUser()"><ion-icon name="contact"></ion-icon></button>
-    			</ion-fab-list>-->
 			</ion-fab>
 <ion-card>
     <ion-card-header>
@@ -52,7 +49,7 @@
     </ion-row>
 
     <ion-card-content>
-      <canvas #stepCanvas></canvas>
+      <canvas #suenoCanvas></canvas>
     </ion-card-content>
   </ion-card>
 
@@ -70,7 +67,7 @@
     </ion-row>
 
     <ion-card-content>
-      <canvas #stepCanvas></canvas>
+      <canvas #hearthCanvas></canvas>
     </ion-card-content>
   </ion-card>
 
@@ -85,7 +82,7 @@
         <ion-list>
       		<ion-item>
         	<ion-label floating>Celular</ion-label>
-        	<ion-input type="text" value=""></ion-input>
+        	<ion-input type="text" [(ngModel)]="searchCell"></ion-input>
       		</ion-item>
     	</ion-list>
 
@@ -107,7 +104,7 @@
       <ion-icon name='contact' item-start></ion-icon>
       Nombre:
       <ion-note item-end>
-      Juanito
+        {{searchName}}
       </ion-note>
     </ion-item>
 
@@ -115,7 +112,7 @@
       <ion-icon name='phone-portrait' item-start></ion-icon>
       Celular:
       <ion-note item-end>
-      978979872
+      {{searchCell}}
       </ion-note>
     </ion-item>
     

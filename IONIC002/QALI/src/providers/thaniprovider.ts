@@ -229,27 +229,28 @@ export class thaniProvider {
       .toPromise()
       .then(this.extractData); 
   }
-
-  // Registro
+  */
   
-  public AddUser(email: string, password: string, username: string, ruc: string, password_confirmation: string, name: string): Promise<any> {
-    let content = { email: "", password: "", username: "", ruc: "", password_confirmation: "", name: ""};
-    content.email = email;
-    content.password = password;
-    content.username = username;
-    content.ruc = ruc;
-    content.password_confirmation = password_confirmation;
-    content.name = name;
-    let url: string = this.getUrl("users");
-    return this.http.post(url, content)
-      .toPromise()
-      .then(this.extractData); 
-  }
-*/
   // Ingreso
 
   public LogIn(user: string, password: string): Observable<{}> {
     let url: string = this.getUrl("/api/Usuario/ValidateUser/" + user + "/" + password);
+    return this.http.get(url).pipe(
+      map(this.extractData),
+      catchError(this.handleError)
+    );
+  }
+
+  public GetUserDetails(id: number): Observable<{}> {
+    let url: string = this.getUrl("/api/MiBand/GetUserDataDetails?id=" + id);
+    return this.http.get(url).pipe(
+      map(this.extractData),
+      catchError(this.handleError)
+    );
+  }
+
+  public GetUserByCell(cell: string): Observable<{}> {
+    let url: string = this.getUrl("/api/Usuario/GetUserByCell/" + cell);
     return this.http.get(url).pipe(
       map(this.extractData),
       catchError(this.handleError)
