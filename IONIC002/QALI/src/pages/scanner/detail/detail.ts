@@ -49,8 +49,8 @@ export class DetailPage {
 
         console.log("Connect:" + JSON.stringify(peripheral));
         this.ble.startNotification(peripheral.id, this.heartRate.service, this.heartRate.measurement).subscribe(
-            data => this.onButtonStateChange(data),
-            () => console.log('Unexpected Error, Failed to subscribe for hearth rate state changes')
+            data => this.onHRStateChange(data),
+            () => this.onHRStateError()
         );
 
         //this.ble.startNotification("F8:6B:77:17:1B:80", '180d', '2a37').subscribe(
@@ -69,14 +69,30 @@ export class DetailPage {
         //);
     }
 
-    onButtonStateChange(buffer: ArrayBuffer) {
+    onHRStateChange(buffer: ArrayBuffer) {
+        let toast = this.toastCtrl.create({
+            message: 'ENTROOOOOOO POR LA PTM',
+            duration: 3000,
+            position: 'middle'
+        });
+        toast.present();
+
         var data = new Uint8Array(buffer);
         console.log(data[0]);
 
         this.ngZone.run(() => {
-            this.rate = data[0];
+            this.hrate = data[0];
         });
 
+    }
+
+    onHRStateError() {
+        let toast = this.toastCtrl.create({
+            message: 'ENTROOOOOOO POR LA PTM, Y FALLO',
+            duration: 3000,
+            position: 'middle'
+        });
+        toast.present();
     }
 
     onDeviceDisconnected(peripheral) {
