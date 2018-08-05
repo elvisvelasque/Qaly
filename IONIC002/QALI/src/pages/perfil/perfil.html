@@ -21,11 +21,11 @@
     <ion-list-header>
       Configuracion
     </ion-list-header>
-    <ion-item>
+    <!--<ion-item>
       <ion-icon name="plane" item-start color="danger"></ion-icon>
       <ion-label>Actualizar Datos</ion-label>
       <ion-toggle color="secondary"></ion-toggle>
-    </ion-item>
+    </ion-item>-->
     <button (click)="changeData()" ion-item>
       <ion-icon name="clipboard" item-start color="primary"></ion-icon>
       <ion-label>Actualizar Datos</ion-label>
@@ -53,14 +53,9 @@
     <ion-list-header>
       Personas con las que comparto:
     </ion-list-header>
-    <ion-item>
+    <ion-item *ngFor= "let user of users" >
       <ion-icon name="ionic" item-start color="primary"></ion-icon>
-      <ion-label>Juanito Gomez</ion-label>
-      <button ion-button outline item-end>Eliminar</button>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="brush" item-start color="primary"></ion-icon>
-      <ion-label>Luchita Espinar</ion-label>
+      <ion-label>{{user.nombreCompleto}}</ion-label>
       <button ion-button outline item-end>Eliminar</button>
     </ion-item>
   </ion-list>
