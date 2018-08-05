@@ -82,7 +82,7 @@ export class HomePage {
   getDetails() {
     this.stepItems = [];
 
-    this.thani.GetUserDetails(1).
+    this.thani.GetUserDetails(this.thani.id).
       subscribe(
         data => {
           if (data) {

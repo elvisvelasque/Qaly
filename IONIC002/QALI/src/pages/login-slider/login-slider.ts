@@ -86,8 +86,14 @@ export class LoginSliderPage {
         subscribe(
           data => {
             if (data) {
-              this.presentLoading('Te identificaste con éxito!');
+              if (data["validado"]) {
+                this.presentLoading('Te identificaste con éxito!');
                 this.navCtrl.setRoot(TabsPage);
+                this.thani.id = data["id"];
+              }
+              else {
+                this.presentLoading('Credenciales incorrectas!');
+              }
             }
           },
         error => {
