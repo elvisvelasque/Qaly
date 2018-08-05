@@ -56,4 +56,19 @@ export class thaniProvider {
       catchError(this.handleError)
     );
   }
+
+  public AddContact(usuario: number, contacto: number, pasos: boolean, ritmo: boolean, sueno:boolean): Observable<{}> {
+    let content = { idUsuario: "", idContacto: "", compartePasos: "", comparteRitmoCardiaco: "", comparteHorasSueno: ""};
+    content.idUsuario = usuario.toString();
+    content.idContacto = contacto.toString();
+    content.compartePasos = pasos.toString();
+    content.comparteRitmoCardiaco = ritmo.toString();
+    content.comparteHorasSueno = sueno.toString();
+    
+    let url: string = this.getUrl("/api/Contactos/AddContacto");
+    return this.http.post(url, content).pipe(
+      map(this.extractData),
+      catchError(this.handleError)
+    );
+  }
 }
