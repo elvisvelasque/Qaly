@@ -12,12 +12,11 @@ export class DetailPage {
     peripheral: any = {};
     statusMessage: string;
     device: any;
-    hrate: any = {};
+    hrate: any = "";
     heartRate = {
         service: '180d',
         measurement: '2a37'
     };
-    rate: number;
 
     constructor(public navCtrl: NavController,
         public navParams: NavParams,
@@ -43,6 +42,7 @@ export class DetailPage {
     }
 
     onConnected(peripheral) {
+        this.hrate = "conectado";
         this.setStatus('');
         this.peripheral = peripheral;
         let characteristics: any[] = this.peripheral.characteristics;
@@ -70,6 +70,7 @@ export class DetailPage {
     }
 
     onHRStateChange(buffer: ArrayBuffer) {
+        this.hrate = "entro";
         let toast = this.toastCtrl.create({
             message: 'ENTROOOOOOO POR LA PTM',
             duration: 3000,
@@ -87,6 +88,7 @@ export class DetailPage {
     }
 
     onHRStateError() {
+        this.hrate = "entro fallo";
         let toast = this.toastCtrl.create({
             message: 'ENTROOOOOOO POR LA PTM, Y FALLO',
             duration: 3000,
