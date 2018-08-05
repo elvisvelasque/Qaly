@@ -78,31 +78,18 @@ export class LoginSliderPage {
 
 
   login() {
-    console.log(this.user_log);
-    console.log(this.pass_log);
     if (this.user_log == undefined || this.pass_log == undefined) {
       this.presentLoading('Ocurrió un error. Inténtalo de nuevo :)');
     }
     else {
-      
-      this.thani.LogIn(this.user_log, this.pass_log).then(
-        data => {
-          if (data) {
-            console.log(data)
-            if (data["codigo"] == 1) {
+      this.thani.LogIn(this.user_log, this.pass_log).
+        subscribe(
+          data => {
+            if (data) {
               this.presentLoading('Te identificaste con éxito!');
-              this.thani.name = data["mensaje"];
-             // this.invoice.token = data["token"];
-              this.navCtrl.setRoot(TabsPage);
+                this.navCtrl.setRoot(TabsPage);
             }
-            else {
-              this.presentLoading('Ocurrió un error. Inténtalo de nuevo :)');
-            }
-            
-          } else {
-            this.presentLoading('Ocurrió un error. Inténtalo de nuevo :)');
-          }
-        },
+          },
         error => {
           this.presentLoading('Ocurrió un error. Inténtalo de nuevo :)');
           console.dir(error);

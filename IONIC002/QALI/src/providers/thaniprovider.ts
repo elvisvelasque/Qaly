@@ -1,21 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@ionic-native/http';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/toPromise';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { map, catchError } from 'rxjs/operators';
 
-/*
-  Generated class for the Ionic_2_Provider provider.
-
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
-*/
 @Injectable()
 export class thaniProvider {
 
   public name = "";
   private rEndpoint = 'https://thaniservices.azurewebsites.net/';
 
-  constructor(public http: Http) {
+  constructor(public  http: HttpClient) {
   }
 
   private getUrl(command: string) {
@@ -23,10 +17,20 @@ export class thaniProvider {
   }
 
   private extractData(res: Response) {
-    //Convert the response to JSON format
-    let body = res.json();
-    //Return the data (or nothing)
-    return body || {};
+    let body = res;
+    return body || { };
+  }
+
+  private handleError (error: Response | any) {
+    let errMsg: string;
+    if (error instanceof Response) {
+      const err = error || '';
+      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+    } else {
+      errMsg = error.message ? error.message : error.toString();
+    }
+    console.error(errMsg);
+    return Observable.throw(errMsg);
   }
 
   // Invices
@@ -244,13 +248,11 @@ export class thaniProvider {
 */
   // Ingreso
 
-  public LogIn(user: string, password: string): Promise<any> {
-    let content = { username: "", password: ""};
-    content.password = password;
-    content.username = user;
-    let url: string = this.getUrl("/api/Usuario/ValidateUser/");
-    return this.http.post(url, content)
-      .toPromise()
-      .then(this.extractData); 
+  public LogIn(user: string, password: string): Observable<{}> {
+    let url: string = this.getUrl("/api/Usuario/ValidateUser/" + user + "/" + password);
+    return this.http.get(url).pipe(
+      map(this.extractData),
+      catchError(this.handleError)
+    );
   }
 }

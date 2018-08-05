@@ -2,6 +2,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { HttpClientModule, HttpClient  } from  '@angular/common/http';
 
 import { perfilpage } from '../pages/perfil/perfil';
 import { datospage } from '../pages/perfil/datos/datos';
@@ -16,8 +17,8 @@ import { BLE } from '@ionic-native/ble';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
 import { thaniProvider } from '../providers/thaniProvider';
+
 
 
 
@@ -36,6 +37,7 @@ import { thaniProvider } from '../providers/thaniProvider';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -52,11 +54,13 @@ import { thaniProvider } from '../providers/thaniProvider';
     LoginSliderPage
   ],
   providers: [
+    BrowserModule,
+    HttpClientModule,
     StatusBar,
-    thaniProvider,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    BLE
+    BLE,
+    thaniProvider
   ]
 })
 export class AppModule {}
