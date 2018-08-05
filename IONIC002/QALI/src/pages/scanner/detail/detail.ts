@@ -12,10 +12,10 @@ export class DetailPage {
     peripheral: any = {};
     statusMessage: string;
     device: any;
-    hrate: any = "";
+    hrate: any = "star";
     heartRate = {
-        service: '180d',
-        measurement: '2a37'
+        service: '180D',
+        measurement: '2A37'
     };
 
     constructor(public navCtrl: NavController,

@@ -1,7 +1,7 @@
 // import { FormBuilder, FormControl, Validator } from '@angular/forms';
 import { Component, ViewChild } from '@angular/core';
 import { AlertController, App, LoadingController, NavController, Slides} from 'ionic-angular';
-//import { InvoiceProvider } from '../../providers/InvoiceProvider';
+import { thaniProvider } from '../../providers/thaniProvider';
 import { TabsPage } from '../tabs/tabs';
 
 @Component({
@@ -20,7 +20,7 @@ export class LoginSliderPage {
   public password_confirmation;
   public name;
 
-  public ruc_log;
+  public user_log;
   public pass_log;
 
   type: string;
@@ -30,7 +30,7 @@ export class LoginSliderPage {
     public alertCtrl: AlertController,
     public navCtrl: NavController,
     public app: App,
-    //public invoice: InvoiceProvider
+    public thani: thaniProvider
   ) { 
     this.type = "login";
   }
@@ -78,23 +78,21 @@ export class LoginSliderPage {
 
 
   login() {
-    console.log(this.ruc_log);
+    console.log(this.user_log);
     console.log(this.pass_log);
-    if (this.ruc_log == undefined || this.pass_log == undefined) {
+    if (this.user_log == undefined || this.pass_log == undefined) {
       this.presentLoading('Ocurrió un error. Inténtalo de nuevo :)');
     }
     else {
-      this.presentLoading('Te identificaste con éxito!');
-      this.navCtrl.setRoot(TabsPage);
-      /*
-      this.invoice.LogIn(this.ruc_log, this.pass_log).then(
+      
+      this.thani.LogIn(this.user_log, this.pass_log).then(
         data => {
           if (data) {
             console.log(data)
             if (data["codigo"] == 1) {
               this.presentLoading('Te identificaste con éxito!');
-              this.invoice.name = data["mensaje"];
-              this.invoice.token = data["token"];
+              this.thani.name = data["mensaje"];
+             // this.invoice.token = data["token"];
               this.navCtrl.setRoot(TabsPage);
             }
             else {
@@ -109,7 +107,7 @@ export class LoginSliderPage {
           this.presentLoading('Ocurrió un error. Inténtalo de nuevo :)');
           console.dir(error);
         }
-      ); */
+      ); 
     }
   }
 

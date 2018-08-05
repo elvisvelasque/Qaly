@@ -17,6 +17,9 @@ import { BLE } from '@ionic-native/ble';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { thaniProvider } from '../providers/thaniProvider';
+
+
 
 @NgModule({
   declarations: [
@@ -50,6 +53,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   providers: [
     StatusBar,
+    thaniProvider,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     BLE
