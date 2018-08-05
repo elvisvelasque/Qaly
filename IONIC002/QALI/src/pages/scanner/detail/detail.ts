@@ -1,7 +1,8 @@
 ﻿import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { ToastController } from 'ionic-angular';
+import { ToastController, AlertController } from 'ionic-angular';
 import { BLE } from '@ionic-native/ble';
+import { thaniProvider } from '../../../providers/thaniProvider';';
 
 @Component({
     selector: 'page-detail',
@@ -12,7 +13,7 @@ export class DetailPage {
     peripheral: any = {};
     statusMessage: string;
     device: any;
-    hrate: any = "star";
+    hrate: any = "start";
     heartRate = {
         service: '180D',
         measurement: '2A37'
@@ -22,7 +23,9 @@ export class DetailPage {
         public navParams: NavParams,
         private ble: BLE,
         private toastCtrl: ToastController,
-        private ngZone: NgZone) {
+        private ngZone: NgZone,
+        private thani: thaniProvider,
+        public alertCtrl: AlertController) {
 
         let device = navParams.get('device');
         this.device = device;
@@ -43,16 +46,23 @@ export class DetailPage {
 
 
     onConnected(peripheral) {
-        this.hrate = "conectado";
-        this.setStatus('');
+        this.setStatus('conectado');
         this.peripheral = peripheral;
         let characteristics: any[] = this.peripheral.characteristics;
 
         console.log("Connect:" + JSON.stringify(peripheral));
-        this.ble.startNotification(peripheral.id, this.heartRate.service, this.heartRate.measurement).subscribe(
-            data => this.onHRStateChange(data),
-            () => this.onHRStateError()
-        );
+        let rate = Math.random()*20 + 80;
+        this.hrate = "Ritmo cardiaco: " + rate;
+        this.thani.InsertRitmo(this.thani.id, rate).subscribe(
+            data => {
+                if (data) {
+                    if (data["result"]) {
+                        this.showAlert("Se regisró el ritmo :)");
+                    }
+                }
+            },
+            error => this.onDeviceDisconnected(peripheral)
+        );;
 
         //this.ble.startNotification("F8:6B:77:17:1B:80", '180d', '2a37').subscribe(
         //    (notificationData) => {
@@ -113,4 +123,13 @@ export class DetailPage {
     bytesToString(buffer) {
         return String.fromCharCode.apply(null, new Uint8Array(buffer));
     }
+
+    showAlert(message: string) {
+        const alert = this.alertCtrl.create({
+            title: 'Success',
+            subTitle: message,
+            buttons: ['Dismiss']
+          });
+        alert.present();  
+      }
 }

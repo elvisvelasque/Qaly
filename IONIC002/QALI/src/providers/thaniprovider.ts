@@ -71,4 +71,17 @@ export class thaniProvider {
       catchError(this.handleError)
     );
   }
+
+  public InsertRitmo(idUsuario: number, valor: number): Observable<{}> {
+    let content = { idUsuario: "", valor: "", fecha: "" };
+    content.idUsuario = idUsuario.toString();
+    content.valor == idUsuario.toString();
+    content.fecha = (new Date()).toLocaleString();
+
+     let url: string = this.getUrl("/api/MiBand/InsertRitmoCardiacoRitmoCardiacoRitmoCardiacoRitmoCardiaco");
+      return this.http.post(url, content).pipe(
+        map(this.extractData),
+        catchError(this.handleError)
+      ); 
+  }
 }
