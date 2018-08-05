@@ -1,6 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { NavController, Platform } from 'ionic-angular';
-import {} from ''
+import { Component ,ViewChild} from '@angular/core';
+import { NavController,Platform } from 'ionic-angular';
 import chartJs from 'chart.js';
 
 @Component({
@@ -8,7 +7,80 @@ import chartJs from 'chart.js';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  @ViewChild('stepCanvas') stepCanvas;
+  stepChart: any;
+  stepItems: Array<any> = [];
 
+  type: string;
+  posts = [];
+  imageUrl: string = 'assets/imgs/profile/profile-cover.jpg';
+
+  constructor(
+    public platform: Platform, 
+    public navCtrl: NavController) {
+    for (let i = 0; i < 4; i++) {
+      this.posts[i] = {
+        text: 'Pago recibido ' + i,
+        created_at: (i + 1),
+      };
+    }
+
+    this.type = "principal"
+  }
+
+
+  changeUser(){
+    this.type = "usuario"
+   }
+
+  changePrincipal(){
+    this.type = "principal"
+   }
+
+   changeSearch() {
+    this.type = "search"
+   }
+
+    ionViewDidLoad() {
+    this.platform.ready().then(() => {
+      this.getSteps();
+    });
+  }  
+
+  getSteps() {
+    this.stepItems = [];
+
+    this.stepItems = 
+    [
+    {"value": 11, "time": "01/10/2018"}, 
+    {"value": 6, "time": "02/10/2018"}, 
+    {"value": 18, "time": "03/10/2018"}, 
+    {"value": 24, "time": "04/10/2018"}, 
+    {"value": 11, "time": "05/10/2018"}, 
+    {"value": 31, "time": "06/10/2018"}
+    ];
+    console.log(this.stepItems);
+    this.stepChart = this.getStepsChart();
+
+    /*
+  this.invoice.GetProductSales().then(
+    data => {
+      if (data.length > 0) {
+        this.p_items = data;
+        console.log("PRODUCTOS");
+        console.log(this.p_items);
+        this.pieChart = this.getPieChart();
+        document.getElementById("porc").textContent = "El producto mas vendido es " + this.p_items["Nombre"][0] + ", con " + Math.round(this.p_items["Datas"][0]*100) + " %";
+      }
+      else {
+        document.getElementById("porc").textContent = "Lo sentimos, no hay información disponible sobre tus productos";
+      }
+    },
+    error => {
+      console.error('Error al obtener data de productos');
+      console.dir(error);
+    }
+=======
   @ViewChild('stepCanvas') stepCanvas;
   stepChart: any;
 
@@ -59,6 +131,7 @@ export class HomePage {
       console.error('Error al obtener data de productos');
       console.dir(error);
     }
+>>>>>>> 8222cd56b28943b5b2aa42a876cb79294f7f9906
   );*/
   }
 
@@ -108,6 +181,5 @@ export class HomePage {
       options,
       type: chartType,
     });
-  }
-
+}
 }
