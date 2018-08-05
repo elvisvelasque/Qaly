@@ -66,9 +66,15 @@ export class thaniProvider {
     );
   }
 
-  public getAllOut(id: number): Observable<{}>{
+
+    public getAllOut(id: number): Observable<{}>{
     let url: string = this.getUrl("/api/Contactos/GetContactosOut/" + id);
    return this.http.get(url).pipe(
+    map(this.extractData),
+      catchError(this.handleError)
+    );
+  }
+  
 
   public AddContact(usuario: number, contacto: number, pasos: boolean, ritmo: boolean, sueno:boolean): Observable<{}> {
     let content = { idUsuario: "", idContacto: "", compartePasos: "", comparteRitmoCardiaco: "", comparteHorasSueno: ""};
