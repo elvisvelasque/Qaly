@@ -1,22 +1,16 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { datospage } from './datos/datos';
-
 
 @Component({
-  selector: 'page-perfil',
-  templateUrl: 'perfil.html'
+  selector: 'datos-perfil',
+  templateUrl: 'datos.html'
 })
-export class perfilpage {
+export class datospage {
 
   imageUrl: string = 'assets/imgs/profile/profile-cover.jpg';
 
   constructor(public navCtrl: NavController) {
 
   }
-
-changeData(){
-	this.navCtrl.push(datospage);
-}
 
 }

@@ -3,13 +3,184 @@
 </ion-content>
 
 <ion-content>
-<ion-fab right bottom>
-    <button ion-fab color="vibrant" mini><ion-icon name="md-share"></ion-icon></button>
-    <ion-fab-list side="left">
-      <button ion-fab><ion-icon name="contact"></ion-icon></button>
-    </ion-fab-list>
-  </ion-fab>
 
+<ion-grid>
+  <ion-row>
+      <ion-col >
+
+ <div [ngSwitch]="type">
+       <div *ngSwitchCase = "'principal'">
+         	<ion-fab right top bottom>
+    			<button ion-fab (click)="changeUser()" color="vibrant" mini><ion-icon name="md-share"></ion-icon></button>
+    			<!--<ion-fab-list side="left">
+      			<button ion-fab (click)="changeUser()"><ion-icon name="contact"></ion-icon></button>
+    			</ion-fab-list>-->
+			</ion-fab>
+<ion-card>
+    <ion-card-header>
+      CANTIDAD DE PASOS
+    </ion-card-header>
+
+     <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Últimos 7 días</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-card-content>
+      <canvas #stepCanvas></canvas>
+    </ion-card-content>
+  </ion-card>
+
+    <ion-card>
+    <ion-card-header>
+      HORAS DE SUEÑO
+    </ion-card-header>
+
+     <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Últimos 7 días</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-card-content>
+      <canvas #stepCanvas></canvas>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      RITMO CARDIACO
+    </ion-card-header>
+
+     <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Última hra</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-card-content>
+      <canvas #stepCanvas></canvas>
+    </ion-card-content>
+  </ion-card>
+
+           
+        </div>
+        
+        <div *ngSwitchCase = "'usuario'">
+        <ion-list-header>
+     	 Buscar usuario a compartir:
+    	</ion-list-header>
+        
+        <ion-list>
+      		<ion-item>
+        	<ion-label floating>Celular</ion-label>
+        	<ion-input type="text" value=""></ion-input>
+      		</ion-item>
+    	</ion-list>
+
+    	<div padding>
+     		 <button ion-button color="primary" (click)="changeSearch()" block>Buscar</button>
+     		 <button ion-button color="danger" (click)="changePrincipal()" block>Regresar</button>
+    	</div>
+
+        </div>
+
+         <div *ngSwitchCase = "'search'">
+          <ion-list no-border>
+
+    <ion-list-header>
+      Usuario:
+    </ion-list-header>
+
+    <ion-item>
+      <ion-icon name='contact' item-start></ion-icon>
+      Nombre:
+      <ion-note item-end>
+      Juanito
+      </ion-note>
+    </ion-item>
+
+	<ion-item>
+      <ion-icon name='phone-portrait' item-start></ion-icon>
+      Celular:
+      <ion-note item-end>
+      978979872
+      </ion-note>
+    </ion-item>
+    
+
+
+
+  	</ion-list>
+
+
+
+         <ion-list>
+
+    	<ion-list-header>
+     	 Actividades a compartir:
+    	</ion-list-header>
+
+   	<ion-item>
+      <ion-toggle checked="true"></ion-toggle>
+      <ion-label>
+        Ritmo Cardiaco
+      </ion-label>
+      <ion-icon name='heart' item-start></ion-icon>
+    </ion-item>
+
+    <ion-item>
+      <ion-toggle checked="true"></ion-toggle>
+      <ion-label>
+        Número de pasos
+      </ion-label>
+      <ion-icon name='bicycle' item-start></ion-icon>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-toggle checked="true"></ion-toggle>
+      <ion-label>
+        Horas de sueño
+      </ion-label>
+	  <ion-icon name="cloudy-night" item-start></ion-icon>    
+	  </ion-item>
+
+
+  </ion-list> 
+
+  <div padding>
+     		 <button ion-button color="primary" (click)="changePrincipal()" block>Agregar</button>
+     		 <button ion-button color="danger" (click)="changePrincipal()" block>Cancelar</button>
+  </div>  
+
+
+        </div>
+
+        <div *ngSwitchCase = "'diagnostico'">
+           <br> 
+                  <ion-card>
+                      
+                  </ion-card> 
+                  
+        </div>
+
+        <div *ngSwitchCase = "'nada'">
+           
+        </div>
+       
+ </div>
+
+      </ion-col>
+  </ion-row>
+</ion-grid>
 
   
 </ion-content>

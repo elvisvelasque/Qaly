@@ -9,13 +9,21 @@
 <ion-content>
 
 <ion-list>
-      <ion-item *ngFor="let post of posts" (click)="itemTapped()">
+      <ion-item-sliding *ngFor="let post of posts" (click)="itemTapped()">
+        <ion-item>	
         <img class="post-profile-image" src="assets/imgs/profile/profile-1.jpg"> {{post.text}}
         <div class="post-time">Hace: {{post.created_at}} Sem.</div>
-        <div class="post-options">
-          <!--<ion-icon name="undo"></ion-icon>-->
-        </div>
-      </ion-item>
+        <!--<div class="post-options">
+          <ion-icon name="undo"></ion-icon>
+        </div>-->
+        </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="deleteTask(task, i)">
+          <ion-icon name="trash"></ion-icon>
+          Borrar
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
     </ion-list>
     
 </ion-content>
