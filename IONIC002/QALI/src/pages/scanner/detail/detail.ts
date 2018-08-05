@@ -41,6 +41,7 @@ export class DetailPage {
 
     }
 
+
     onConnected(peripheral) {
         this.hrate = "conectado";
         this.setStatus('');
@@ -71,13 +72,6 @@ export class DetailPage {
 
     onHRStateChange(buffer: ArrayBuffer) {
         this.hrate = "entro";
-        let toast = this.toastCtrl.create({
-            message: 'ENTROOOOOOO POR LA PTM',
-            duration: 3000,
-            position: 'middle'
-        });
-        toast.present();
-
         var data = new Uint8Array(buffer);
         console.log(data[0]);
 
@@ -89,12 +83,6 @@ export class DetailPage {
 
     onHRStateError() {
         this.hrate = "entro fallo";
-        let toast = this.toastCtrl.create({
-            message: 'ENTROOOOOOO POR LA PTM, Y FALLO',
-            duration: 3000,
-            position: 'middle'
-        });
-        toast.present();
     }
 
     onDeviceDisconnected(peripheral) {
