@@ -43,6 +43,7 @@ export class HomePage {
    }
 
   changePrincipal(){
+    this.getDetails();
     this.type = "principal"
    }
 

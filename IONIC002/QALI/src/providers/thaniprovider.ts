@@ -250,7 +250,7 @@ export class thaniProvider {
   }
 
   public GetUserByCell(cell: string): Observable<{}> {
-    let url: string = this.getUrl("/api/Usuario/GetUserByCell/" + cell);
+    let url: string = this.getUrl("/api/Usuario/GetUserByCel/" + cell);
     return this.http.get(url).pipe(
       map(this.extractData),
       catchError(this.handleError)
